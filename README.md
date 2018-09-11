@@ -24,4 +24,6 @@ To run the server, cd into 'src' (There should be a manage.py file) and type ```
 **Please do not commit to the master branch.** Instead, follow the instructions [here](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches) to create branches, commit, and create pull requests. 
 
  ## More Questions
- Go to [this django project](https://docs.djangoproject.com/en/2.1/intro/tutorial01/) for a full tutorial on how to use Django. 
+ > Django: Go to [this django project](https://docs.djangoproject.com/en/2.1/intro/tutorial01/) for a full tutorial on how to use Django. 
+ > Project: Email [me](syurk738@students.bju.edu)
+ 
