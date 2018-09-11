@@ -25,5 +25,5 @@ To run the server, cd into 'src' (There should be a manage.py file) and type ```
 
  ## More Questions
  > Django: Go to [this django project](https://docs.djangoproject.com/en/2.1/intro/tutorial01/) for a full tutorial on how to use Django. 
- > Project: Email [me](syurk738@students.bju.edu)
+ > Project: Email [mailto](syurk738@students.bju.edu)
  
