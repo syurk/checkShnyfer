@@ -17,5 +17,8 @@ To run the server, cd into 'src' (There should be a manage.py file) and type ```
  ### To the Database
  If changes are made to the database run ```py manage.py migrate``` to make the changes to the database.
 
- ### More Questions
+ ### to the Code
+ If you make changes to the code in a python file that already exists and the server is running, you do not need to restart the server.
+
+ ## More Questions
  Go to [this django project](https://docs.djangoproject.com/en/2.1/intro/tutorial01/) for a full tutorial on how to use Django. 
