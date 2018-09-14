@@ -2,25 +2,28 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils import timezone
 
+import datetime
+
 from .models import Check
 
 def index(request):
-    with open('addchecks/addchecks.html', 'r') as myfile:
-        data = myfile.read()
-    return HttpResponse(data)
+    return render(request, 'addchecks/addchecks.html')
+
+def submit(request):
+    addCheckToDB(request)
+    return HttpResponse("Submitted check. <a href='../viewchecks'>Click here to view all checks.</a>")
 
 def viewchecks(request):
-    addCheckToDB(request)
     return HttpResponse(', '.join(map(lambda c: checkToString(c),Check.objects.order_by('-written_date'))))
 
 def addCheckToDB(request):
     c = Check()
-    c.name = "benji"
-    c.written_date = timezone.now()
-    c.amount = 0
-    c.routing_no = 0
-    c.account_no = 0
-    c.check_no = 0
+    c.name = request.POST.get("fullname")
+    c.written_date = request.POST.get("checkdate")
+    c.amount = request.POST.get("dollaramount")
+    c.routing_no = request.POST.get("routingnumber")
+    c.account_no = request.POST.get("accountnumber")
+    c.check_no = request.POST.get("checknumber")
     c.save()
 
 def checkToString(check):
