@@ -4,7 +4,9 @@ from django.http import HttpResponse
 from .models import Check
 
 def index(request):
-    return HttpResponse("Hello, world.")
+    with open('addchecks.html', 'r') as myfile:
+        data = myfile.read()
+    return HttpResponse(data)
 
 def viewchecks(request):
     return HttpResponse(', '.join(map(lambda c: checkToString(c),Check.objects.order_by('-written_date'))))
