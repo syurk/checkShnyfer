@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container" style="margin: 10px; width: 100%;">
+    <form action="submitcheck/" method="POST">{% csrf_token %}
+  
+      <label for="fname">Full Name</label>
+      <input type="text" id="fname" name="fullname" placeholder="Full name on check..."><br/>
+  
+      <label for="damount">Dollar Amount</label>
+      <input type="text" id="damount" name="dollaramount" placeholder="Dollar amount of check..."><br/>
+
+      <label for="rnum">Routing Number</label>
+      <input type="text" id="rnum" name="routingnumber" placeholder="Routing number on check..."><br/>
+
+      <label for="anum">Account Number</label>
+      <input type="text" id="anum" name="accountnumber" placeholder="Account number on check..."><br/>
+
+      <label for="cnum">Check Number</label>
+      <input type="text" id="cnum" name="checknumber" placeholder="Check Number..."><br/>
+  
+      <label for="date">Subject</label>
+      <input type="date" id="date" name="checkdate"><br/>
+  
+      <input type="submit" value="Submit">
+  
+    </form>
+
+    <a href="viewchecks/">Click here to view all checks.</a>
+  </div>
