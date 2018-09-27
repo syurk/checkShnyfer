@@ -1,0 +1,20 @@
+{% extends "checksbase.html" %}
+
+{% block title %}Manage Checks{% endblock %}
+
+{% block content %}
+<a style="margin: 10px;" href="/managechecks/addchecks/">Click here to add a check.</a>
+
+{% for q in checks %}
+    <div class="check-container">
+        <h3 class="name">Name: {{ q.name }}</h3>
+        <h4 class="amount">$ Amount: {{ q.amount }}</h4>
+        <div class="signline">Pay to the order of:</div>
+        <h4 class="written_date">Date: {{ q.written_date }}</h4>
+        <p class="routing_no">Routing no: {{ q.routing_no }}</p>
+        <p class="account_no">Account no: {{ q.account_no }}</p>
+        <p class="check_no">Check no: {{ q.check_no }}</p>
+    </div>
+{% endfor %}
+
+{% endblock %}

@@ -7,14 +7,14 @@ from datetime import datetime
 from .models import Check
 
 def index(request):
-    return render(request, 'addchecks/addchecks.html')
+    return render(request, 'managechecks/index.html', {"checks": Check.objects.order_by('-written_date').exclude(name="")})
+
+def addchecks(request):
+    return render(request, 'managechecks/addchecks.html')
 
 def submit(request):
     addCheckToDB(request)
-    return HttpResponse("Submitted check. <a href='../viewchecks'>Click here to view all checks.</a>")
-
-def viewchecks(request):
-    return render(request, "addchecks/viewchecks.html", {"checks": Check.objects.order_by('-written_date').exclude(name="")})
+    return render(request, "managechecks/submitcheck.html")
 
 def addCheckToDB(request):
     c = Check()
