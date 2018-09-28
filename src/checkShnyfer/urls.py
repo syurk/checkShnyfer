@@ -19,6 +19,6 @@ from homepage import views as homepage_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('addchecks/', include('addchecks.urls')),
+    path('addchecks/', include('addchecks.urls'), name='addchecks'),  
     path('', homepage_views.index , name = 'home')
 ]
