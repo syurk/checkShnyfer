@@ -13,9 +13,14 @@ def addchecks(request):
     return render(request, 'managechecks/addchecks.html')
 
 def editcheck(request):
-    check = Check.objects.get(check_id=request.GET['id'][0])
+    check = Check.objects.get(check_id=request.GET.get('id'))
     return render(request, 'managechecks/editcheck.html',
     {"check": check, "datetimestr": check.written_date.strftime('%Y-%m-%d')})
+
+def deletecheck(request):
+    id = request.GET.get('id')
+    Check.objects.get(check_id=id).delete()
+    return HttpResponse()
 
 def submit(request):
     addCheckToDB(request)

@@ -6,6 +6,19 @@ a.bigbutton, a.bigbutton:visited, a.bigbutton:hover, a.bigbutton:active {
     text-decoration: none;
 }
 
+.deletebutton {
+    background:none!important;
+    color:#337ab7;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    cursor: pointer;
+}
+
+.deletebutton:hover {
+    text-decoration: underline;
+}
+
 table {
     margin: 20px;
 }

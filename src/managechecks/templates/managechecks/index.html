@@ -3,11 +3,29 @@
 {% block title %}Manage Checks{% endblock %}
 
 {% block content %}
+    <script>
+        function deleteCheck(id) {
+            var confirmed = confirm("Are you sure you want to delete a check?");
+            if (confirmed == true) {
+                $.ajax({
+                    url: '/managechecks/deletecheck/',
+                    data: {
+                        'id': id
+                    },
+                    success: function (data) {
+                        $(".check_id_" + id).hide();
+                    }
+                });
+            }
+        }
+    </script>
+
     <a class="bigbutton" href="/managechecks/addchecks/">Click here to add a check.</a>
 
     <table id="check-table" class="tablesorter">
         <thead>
             <tr>
+                <th></th>
                 <th></th>
                 <th>Name</th>
                 <th>Amount</th>
@@ -19,8 +37,9 @@
         </thead>
         <tbody>
             {% for c in checks %}
-            <tr data-check-id="{{ c.check_id }}">
+            <tr class="check_id_{{ c.check_id }}">
                 <td><a href="/managechecks/editcheck?id={{c.check_id}}">Edit</a></td>
+                <td><button class="deletebutton" onclick="deleteCheck({{ c.check_id }})">Delete</button></td>
                 <td>{{ c.name }}</td>
                 <td>{{ c.amount }}</td>
                 <td>{{ c.written_date }}</td>
