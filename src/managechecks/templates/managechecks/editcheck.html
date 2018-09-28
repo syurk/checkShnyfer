@@ -1,0 +1,25 @@
+{% extends "partials/checksbase.html" %}
+
+{% block title %}Edit Check{% endblock %}
+
+{% block content %}
+{% include "partials/checkform.html" %}
+
+<script type="text/javascript">
+    function datetime_model2html(dt) {
+        var date = new Date(dt);
+        console.log(date);
+        return date;
+    }
+
+    $(document).ready(function() {
+        $("#fname").val("{{check.name}}");
+        $("#damount").val("{{check.amount}}");
+        $("#rnum").val("{{check.routing_no}}");
+        $("#anum").val("{{check.account_no}}");
+        $("#cnum").val("{{check.check_no}}");
+        
+        $("#date").val("{{datetimestr}}");
+    });
+ </script>
+{% endblock %}

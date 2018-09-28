@@ -1,0 +1,21 @@
+a.bigbutton {
+    font-size: 24pt;
+}
+
+a.bigbutton, a.bigbutton:visited, a.bigbutton:hover, a.bigbutton:active {
+    text-decoration: none;
+}
+
+table {
+    margin: 20px;
+}
+
+thead, tbody {
+    border: 1px solid black;
+}
+
+td, th {
+    padding: 2px 10px 2px 10px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
