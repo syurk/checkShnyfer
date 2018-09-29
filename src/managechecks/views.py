@@ -4,11 +4,15 @@ from django.http import HttpResponse
 from .models import Check
 from .checkutils import handleManageCheckRequest
 
+from django.contrib.auth.decorators import login_required
+
 app_name = 'managechecks_app'
 
+@login_required
 def index(request):
     return render(request, 'managechecks/index.html', {"checks": Check.objects.order_by('-written_date').exclude(name="")})
 
+@login_required
 def addchecks(request):
     return render(request, 'managechecks/addchecks.html')
 
