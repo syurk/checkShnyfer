@@ -1,0 +1,28 @@
+{% extends "partials/acctform.html" %}
+
+{% block title %}Edit Account{% endblock %}
+
+{% block content %}
+{% include "partials/acctform.html" %}
+
+<script type="text/javascript">
+    function datetime_model2html(dt) {
+        var date = new Date(dt);
+        console.log(date);
+        return date;
+    }
+
+    $(document).ready(function() {
+        $("#id").val("{{account.account_id}}");
+        $("#fname").val("{{account.fname}}");
+        $("#lname").val("{{account.lname}}");
+        $("#pnum").val("{{account.phone_number}}");
+        $("#rnum").val("{{account.routing_no}}");
+        $("#anum").val("{{account.account_no}}");
+        $("#strtadd").val("{{account.street_address}}");
+        $("#city").val("{{account.city}}");
+        $("#state").val("{{account.state}}");
+        $("#zip").val("{{account.zip}}");
+    });
+ </script>
+{% endblock %}

@@ -1,0 +1,33 @@
+<form action="../submitaccount/" method="POST">{% csrf_token %}
+    <input type="hidden" name="id" id="id">
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="First name on check..."><br/>
+    
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Last name on check..."><br/>
+    
+    <label for="pnum">Phone Number</label>
+    <input type="text" id="pnum" name="phonenumber" placeholder="Phone number of passer..."><br/>
+
+    <label for="rnum">Routing Number</label>
+    <input type="text" id="rnum" name="routingnumber" placeholder="Routing number on check..."><br/>
+
+    <label for="anum">Account Number</label>
+    <input type="text" id="anum" name="accountnumber" placeholder="Account number on check..."><br/>
+
+    <label for="strtadd">Street Address</label>
+    <input type="text" id="strtadd" name="streetaddress" placeholder="Street Address on check..."><br/>
+
+    <label for="city">City</label>
+    <input type="text" id="city" name="city" placeholder="City from check..."><br/>
+    
+    <label for="state">State</label>
+    <input type="text" id="state" name="state" placeholder="State from check..."><br/>
+    
+    <label for="zip">Zip</label>
+    <input type="text" id="zip" name="zip" placeholder="Zipcode from check..."><br/>
+
+    <input type="submit" value="Submit">
+
+</form>

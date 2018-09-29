@@ -1,0 +1,51 @@
+{% extends "partials/acctsbase.html" %}
+
+{% block title %}Manage Accounts{% endblock %}
+
+{% block content %}
+    <script>
+        function deleteAccount(id) {
+            var confirmed = confirm("Are you sure you want to delete an account?");
+            if (confirmed == true) {
+                $.ajax({
+                    url: '/manageaccounts/deleteaccount/',
+                    data: {
+                        'id': id
+                    },
+                    success: function (data) {
+                        $(".account_id_" + id).hide();
+                    }
+                });
+            }
+        }
+    </script>
+
+    <a class="bigbutton" href="/manageaccounts/addaccount/">Click here to add an account.</a>
+
+    <table id="account-table" class="tablesorter">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Routing #</th>
+                <th>Account #</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in accounts %}
+            <tr class="account_id_{{ a.account_id }}">
+                <td><a href="/manageaccounts/editaccount?id={{a.account_id}}">Edit</a></td>
+                <td><button class="deletebutton" onclick="deleteAccount({{ a.account_id }})">Delete</button></td>
+                <td>{{ a.fname }}</td>
+                <td>{{ a.lname }}</td>
+                <td>{{ a.phone_number }}</td>
+                <td>{{ a.routing_no }}</td>
+                <td>{{ a.account_no }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
