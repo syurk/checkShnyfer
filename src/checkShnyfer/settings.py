@@ -35,6 +35,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 INSTALLED_APPS = [
     'managechecks.apps.ManagechecksConfig',
+    'manageaccounts.apps.ManageaccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
