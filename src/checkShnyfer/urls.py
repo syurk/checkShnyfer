@@ -20,5 +20,6 @@ from homepage import views as homepage_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('managechecks/', include('managechecks.urls'), name = 'managechecks'),
-    path('', homepage_views.index , name = 'home')
+    path('', homepage_views.index , name = 'home'),
+    path('user/', include('django.contrib.auth.urls'))
 ]
