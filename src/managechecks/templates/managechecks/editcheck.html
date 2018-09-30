@@ -14,20 +14,17 @@
     <select id="account" name="account">
         <option value="" disabled selected>Select an Account</option>
         {% for a in accounts %}
-        <option value="{{a.account_id}}">"{{a.name}}"</option>
+        <option value="{{a.account_id}}">{{a.name}}</option>
         {% endfor %}
-    </select><br/>
+    </select>
+    <a class="btn btn-primary" href="manageaccounts/addaccount">Add Account</a>
+    <br/>
 
     {% include "partials/checkinputs.html" %}
 </form>
+{% endblock %}
 
-<select id="account" name="account">
-    <option value="" disabled selected>Select an Account</option>
-    {% for a in accounts %}
-        <option value="{{ a.account_id }}">"{{ a.name }}"</option>
-    {% endfor %}
-</select><br/>
-
+{% block script %}
 <script type="text/javascript">
     function datetime_model2html(dt) {
         var date = new Date(dt);
@@ -37,7 +34,7 @@
 
     $(document).ready(function() {
         $("#id").val("{{check.check_id}}");
-        //$("#account").val("{{check.account}}");
+        $("#account").val("{{check.account.account_id}}");
         $("#damount").val("{{check.amount}}");
         $("#cnum").val("{{check.check_no}}");
         $("#date").val("{{datetimestr}}");

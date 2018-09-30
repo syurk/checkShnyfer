@@ -12,7 +12,7 @@ app_name = 'managechecks_app'
 
 @login_required
 def index(request):
-    return render(request, 'managechecks/index.html', {"checks": Check.objects.get()})
+    return render(request, 'managechecks/index.html', {"checks": Check.objects.order_by('-written_date')})
 
 @login_required
 def addchecks(request):

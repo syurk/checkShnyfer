@@ -6,6 +6,7 @@ This is a set of utility functions to include for views to interact with Checks 
 from datetime import datetime
 from django.utils import timezone
 from .models import Check
+from manageaccounts.models import Account
 
 def getCheckById(id):
     """
@@ -16,22 +17,18 @@ def getCheckById(id):
     return Check.objects.get(check_id=int(id))
 
 def addCheckToDB(request):
-    c = Check()
-    c.name = request.POST.get("fullname")
-    c.written_date = timezone.make_aware(datetime.strptime(request.POST.get("checkdate"), "%Y-%m-%d"))
-    c.amount = request.POST.get("dollaramount")
-    c.routing_no = request.POST.get("routingnumber")
-    c.account_no = request.POST.get("accountnumber")
-    c.check_no = request.POST.get("checknumber")
-    c.save()
+    Check.objects.create(
+        account=Account.objects.get(account_id=request.POST.get("account")),
+        written_date=timezone.make_aware(datetime.strptime(request.POST.get("checkdate"), "%Y-%m-%d")),
+        amount=request.POST.get("dollaramount"),
+        check_no=request.POST.get("checknumber"))
 
 def editCheckInDB(request, check):
-    check.name = request.POST.get("fullname")
     check.written_date = timezone.make_aware(datetime.strptime(request.POST.get("checkdate"), "%Y-%m-%d"))
     check.amount = request.POST.get("dollaramount")
-    check.routing_no = request.POST.get("routingnumber")
-    check.account_no = request.POST.get("accountnumber")
     check.check_no = request.POST.get("checknumber")
+    check.account = Account.objects.get(account_id=request.POST.get("account"))
+
     check.save()
 
 def handleManageCheckRequest(request):

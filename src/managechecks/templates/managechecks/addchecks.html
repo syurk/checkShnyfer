@@ -17,7 +17,9 @@
             {% for a in accounts %}
             <option value="{{ a.account_id }}">{{ a.name }}</option>
             {% endfor %}
-        </select><br/>
+        </select>
+        <a class="btn btn-primary" href="/manageaccounts/addaccount">Add Account</a>
+        <br/>
         
         {% include "partials/checkinputs.html" %}
     </form>
