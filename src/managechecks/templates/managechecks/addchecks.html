@@ -1,11 +1,26 @@
-{% extends "partials/checksbase.html" %}
+{% extends "base.html" %}
 
-{% block title %}Add Check{% endblock %}
+{% block link %}
+    {% load static %}
+        
+    <link rel="stylesheet" type="text/css" href="{% static 'managechecks/styles.css' %}">
+{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <div class="container" style="margin: 10px; width: 100%;">
-    {% include "partials/checkform.html" %}
+    <form action="../submitcheck/" method="POST">{% csrf_token %}
+        <input type="hidden" name="id" id="id">
+    
+        <label for="account">Account</label>
+        <select id="account" name="account">
+            <option value="" disabled selected>Select an Account</option>
+            {% for a in accounts %}
+            <option value="{{ a.account_id }}">{{ a.name }}</option>
+            {% endfor %}
+        </select><br/>
+        
+        {% include "partials/checkinputs.html" %}
+    </form>
 
     <a href="../">Click here to view all checks.</a>
   </div>

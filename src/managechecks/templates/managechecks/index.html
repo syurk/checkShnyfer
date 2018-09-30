@@ -1,6 +1,10 @@
-{% extends "partials/checksbase.html" %}
+{% extends "base.html" %}
 
-{% block title %}Manage Checks{% endblock %}
+{% block link %}
+    {% load static %}
+        
+    <link rel="stylesheet" type="text/css" href="{% static 'managechecks/styles.css' %}">
+{% endblock %}
 
 {% block content %}
     <script>
@@ -20,7 +24,7 @@
         }
     </script>
 
-    <a class="bigbutton" href="/managechecks/addchecks/">Click here to add a check.</a>
+    <a class="btn btn-primary" href="/managechecks/addchecks/">Click here to add a check.</a>
 
     <table id="check-table" class="tablesorter">
         <thead>
@@ -40,11 +44,11 @@
             <tr class="check_id_{{ c.check_id }}">
                 <td><a href="/managechecks/editcheck?id={{c.check_id}}">Edit</a></td>
                 <td><button class="deletebutton" onclick="deleteCheck({{ c.check_id }})">Delete</button></td>
-                <td>{{ c.name }}</td>
+                <td>{{ c.account.name }}</td>
                 <td>{{ c.amount }}</td>
                 <td>{{ c.written_date }}</td>
-                <td>{{ c.routing_no }}</td>
-                <td>{{ c.account_no }}</td>
+                <td>{{ c.account.routing_no }}</td>
+                <td>{{ c.account.account_no }}</td>
                 <td>{{ c.check_no }}</td>
             </tr>
             {% endfor %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block link %}
+    {% load static %}
+        
+    <link rel="stylesheet" type="text/css" href="{% static 'managechecks/styles.css' %}">
+{% endblock %}
+
+{% block title %}Add Accounts{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container" style="margin: 10px; width: 100%;">
+    {% include "partials/acctform.html" %}
+
+    <a href="../">Click here to view all Accounts.</a>
+  </div>
+{% endblock %}

@@ -1,9 +1,32 @@
-{% extends "partials/checksbase.html" %}
+{% extends "base.html" %}
 
-{% block title %}Edit Check{% endblock %}
+{% block link %}
+    {% load static %}
+        
+    <link rel="stylesheet" type="text/css" href="{% static 'managechecks/styles.css' %}">
+{% endblock %}
 
 {% block content %}
-{% include "partials/checkform.html" %}
+<form action="../submitcheck/" method="POST">{% csrf_token %}
+    <input type="hidden" name="id" id="id">
+    
+    <label for="account">Account</label>
+    <select id="account" name="account">
+        <option value="" disabled selected>Select an Account</option>
+        {% for a in accounts %}
+        <option value="{{a.account_id}}">"{{a.name}}"</option>
+        {% endfor %}
+    </select><br/>
+
+    {% include "partials/checkinputs.html" %}
+</form>
+
+<select id="account" name="account">
+    <option value="" disabled selected>Select an Account</option>
+    {% for a in accounts %}
+        <option value="{{ a.account_id }}">"{{ a.name }}"</option>
+    {% endfor %}
+</select><br/>
 
 <script type="text/javascript">
     function datetime_model2html(dt) {
@@ -14,12 +37,9 @@
 
     $(document).ready(function() {
         $("#id").val("{{check.check_id}}");
-        $("#fname").val("{{check.name}}");
+        //$("#account").val("{{check.account}}");
         $("#damount").val("{{check.amount}}");
-        $("#rnum").val("{{check.routing_no}}");
-        $("#anum").val("{{check.account_no}}");
         $("#cnum").val("{{check.check_no}}");
-        
         $("#date").val("{{datetimestr}}");
     });
  </script>

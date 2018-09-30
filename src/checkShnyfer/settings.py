@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 from crispy_forms.tests.test_settings import BASE_DIR
-from django.conf.global_settings import STATIC_ROOT
+from django.conf.global_settings import STATIC_ROOT, LOGOUT_REDIRECT_URL
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,10 +29,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'  
 
 # Application definition
 
 INSTALLED_APPS = [
+    'manageaccounts.apps.ManageaccountsConfig',
     'managechecks.apps.ManagechecksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'homepage'
+    'homepage',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -95,6 +98,9 @@ STATICFILES_DIRS = (
     )),
 )
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/user/login/' 
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
