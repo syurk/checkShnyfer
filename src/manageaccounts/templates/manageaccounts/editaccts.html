@@ -8,7 +8,9 @@
 
 {% block content %}
 {% include "partials/acctform.html" %}
+{% endblock %}
 
+{% block script %}
 <script type="text/javascript">
     function datetime_model2html(dt) {
         var date = new Date(dt);
@@ -28,4 +30,4 @@
         $("#zip").val("{{account.zip}}");
     });
  </script>
-{% endblock %}
+{% endfor %}

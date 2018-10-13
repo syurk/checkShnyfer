@@ -18,6 +18,7 @@ def index(request):
 def addchecks(request):
     return render(request, 'managechecks/addchecks.html', {"accounts": Account.objects.all()})
 
+@login_required
 def editcheck(request):
     check = Check.objects.get(check_id=request.GET.get('id'))
     return render(request, 'managechecks/editcheck.html',
