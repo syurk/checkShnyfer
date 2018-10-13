@@ -4,7 +4,7 @@
     <h3>Checks To Print</h3>
     {% if checks_to_print %}
         {% for check in checks_to_print %}
-            <a style="display:block;" class="btn btn-primary" href="/printchecks/download/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}}</a>
+            <a style="display:block;" class="btn btn-primary" href="/printletters/download/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}}</a>
         {% endfor %}
     {% else %}
         <p>No checks to print for today.</p>
@@ -19,7 +19,7 @@
     <hr>
     <h3>Print all Checks</h3>
     {% if checks_to_print %}
-    <a style="display:block;" class="btn btn-primary" href="/printchecks/download/?{{all_ids_string}}">
+    <a style="display:block;" class="btn btn-primary" href="/printletters/download/?{{all_ids_string}}">
         Click here to download all letters for today.</a>
     {% else %}
     <a style="display:block;" class="btn btn-secondary" href="#">

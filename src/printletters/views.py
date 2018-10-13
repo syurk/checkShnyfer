@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.utils import timezone
+from django.utils.encoding import smart_str
 from managechecks.models import Check
 
 from datetime import datetime, timedelta
-
-import io
-from django.http import FileResponse
-from reportlab.pdfgen import canvas
+from .letters import generateCheck, zipname
+from django.views.static import serve
+import os
 
 def index(request):
     all_ids_string = ''
@@ -28,20 +28,15 @@ def index(request):
     }
     return render(request, 'printletters/index.html', context)
 
-def generateCheck(check):
-    buffer = io.BytesIO()
-
-    p = canvas.Canvas(buffer)
-
-    p.drawString(100, 100, "Hello world.")
-
-    p.showPage()
-    p.save()
-    return buffer
-
 def download(request):
     checks = request.GET.getlist('id')
     letters = []
-    for check in checks:
-        letters.append(generateCheck(check))
-    return index(request)
+    goalday = timezone.make_aware(datetime.now() - timedelta(days=10))
+    checks_to_print = []
+
+    for check in Check.objects.order_by('-written_date'):
+        if check.written_date.date() == goalday.date():
+            checks_to_print.append(check)
+    generateCheck(checks_to_print)
+
+    return serve(request, os.path.basename(zipname()), os.path.dirname(zipname()))
