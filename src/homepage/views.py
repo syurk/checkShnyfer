@@ -7,4 +7,4 @@ def index(request):
     #return HttpResponse('Hello')
     context = {}
     template = 'home.html'
-    return render(request, template,context )
+    return render(request, template, context)

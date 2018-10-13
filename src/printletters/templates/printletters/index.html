@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Checks To Print</h3>
+    {% if checks_to_print %}
+        {% for check in checks_to_print %}
+            <a style="display:block;" class="btn btn-primary" href="/printchecks/download/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}}</a>
+        {% endfor %}
+    {% else %}
+        <p>No checks to print for today.</p>
+    {% endif %}
+
+    <hr>
+    <h3>Checks Not To Print</h3>
+    {% for check in checks_not_to_print %}
+        <a style="display:block;" class="btn btn-secondary" href="#">{{check.account.name}} - {{check.written_date.date}}</a>
+    {% endfor %}
+
+    <hr>
+    <h3>Print all Checks</h3>
+    {% if checks_to_print %}
+    <a style="display:block;" class="btn btn-primary" href="/printchecks/download/?{{all_ids_string}}">
+        Click here to download all letters for today.</a>
+    {% else %}
+    <a style="display:block;" class="btn btn-secondary" href="#">
+        No letters for today.</a>
+    {% endif %}
+{% endblock %}
