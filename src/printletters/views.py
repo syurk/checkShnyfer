@@ -30,13 +30,10 @@ def index(request):
 
 def download(request):
     checks = request.GET.getlist('id')
-    letters = []
-    goalday = timezone.make_aware(datetime.now() - timedelta(days=10))
     checks_to_print = []
-
-    for check in Check.objects.order_by('-written_date'):
-        if check.written_date.date() == goalday.date():
-            checks_to_print.append(check)
+    letters = []
+    for id in checks:
+        checks_to_print.append(Check.objects.get(check_id=int(id)))
     generateCheck(checks_to_print)
 
     return serve(request, os.path.basename(zipname()), os.path.dirname(zipname()))
