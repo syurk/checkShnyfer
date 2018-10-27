@@ -5,14 +5,13 @@
     <input type="text" id="name" name="name" placeholder="Name on check..." required><br/>
     
     <label for="pnum">Phone Number</label>
-    <input type="tel" id="phone" name="phone"pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-        id="pnum" name="phonenumber" placeholder="123-456-7890" required><br/>
+    <input type="text" id="phone" name="phonenumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="pnum" placeholder="123-456-7890" required><br/>
 
     <label for="rnum">Routing Number</label>
-    <input type="text" id="rnum" name="routingnumber" placeholder="Routing number on check..." required><br/>
+    <input type="text" id="rnum" name="routingnumber" pattern="[0-9]{8}" placeholder="Routing number on check..." required><br/>
 
     <label for="anum">Account Number</label>
-    <input type="text" id="anum" name="accountnumber" placeholder="Account number on check..." required><br/>
+    <input type="text" id="anum" name="accountnumber" pattern="[0-9]{8}" placeholder="Account number on check..." required><br/>
 
     <label for="strtadd">Street Address</label>
     <input type="text" id="strtadd" name="streetaddress" placeholder="Street Address on check..." required><br/>
@@ -21,7 +20,7 @@
     <input type="text" id="city" name="city" placeholder="City from check..." required><br/>
     
     <label for="state">State</label>
-    <input type="text" id="state" name="state" placeholder="State from check..." required><br/>
+    <input type="text" id="state" name="state" pattern="[A-Z]{2}" placeholder="State from check..." required><br/>
     
     <label for="zip">Zip</label>
     <input type="text" id="zip" name="zip" placeholder="Zipcode from check..." required><br/>
