@@ -1,12 +1,12 @@
 from django.test import TestCase
 from .models import Account
 from managechecks.models import Check
+import datetime
 
 
 # Create your tests here.
 
 class AccountTestCase(TestCase):
-    
     @classmethod
     def setUpTestData(cls):
         cls.JimAcc = Account.objects.create(name="Jim",
@@ -25,11 +25,11 @@ class AccountTestCase(TestCase):
                                city="Gville",
                                state="NC",
                                zip="09234")
-#       Check.objects.create(account = cls.JimAcc,
+#        Check.objects.create(account = cls.JimAcc,
 #                             written_date = d,
 #                             amount = int("45"),
 #                             check_no = int("456"))
-        
+#        
     def test_Account(self):
         jim = Account.objects.get(name="Jim")
         alan = Account.objects.get(name="Alan")
