@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-from django.db import models
-from django.core.validators import RegexValidator
-
-# Create your models here.
-class Account(models.Model):
-    account_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=150)
-    phone_number = models.CharField(max_length=12)
-    routing_no = models.PositiveIntegerField('routing number')
-    account_no = models.PositiveIntegerField('account number')
-    street_address = models.CharField(max_length=150)
-    city = models.CharField(max_length=150)
-    state = models.CharField(max_length=2)
-=======
 from django.db import models
 from django.core.validators import RegexValidator
 
@@ -27,5 +12,4 @@ class Account(models.Model):
     street_address = models.CharField(max_length=150)
     city = models.CharField(max_length=150)
     state = models.CharField(max_length=2)
->>>>>>> e3e3b2a15767f117cc449c64b18688b41884f3d5
     zip = models.CharField(max_length=5)
