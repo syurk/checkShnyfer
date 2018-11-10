@@ -24,10 +24,14 @@ def editCheckInDB(check, written_date, amt, check_no, account):
     check.save()
 
 def handleManageCheckRequest(request):
-    check = Check.objects.get(check_id=int(request.POST.get("id")))
+    id_str = request.POST.get("id")
     written_date = timezone.make_aware(datetime.strptime(request.POST.get("checkdate"), "%Y-%m-%d"))
-    amt = POST.get("dollaramount")
+    amt = request.POST.get("dollaramount")
     check_no = request.POST.get("checknumber")
     account = Account.objects.get(account_id=request.POST.get("account"))
 
-    addCheckToDB(written_date, amt, check_no, account) if check is None else editCheckInDB(check, written_date, amt, check_no, account)
+    if id_str:
+        check = Check.objects.get(check_id=int(id_str))
+        editCheckInDB(check, written_date, amt, check_no, account)
+    else:
+        addCheckToDB(written_date, amt, check_no, account)
