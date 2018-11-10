@@ -8,29 +8,26 @@ from django.utils import timezone
 from .models import Check
 from manageaccounts.models import Account
 
-def getCheckById(id):
-    """
-    Returns whether a check exists with specified id.
-    """
-    if not id:
-        return None
-    return Check.objects.get(check_id=int(id))
-
-def addCheckToDB(request):
+def addCheckToDB(written_date, amt, check_no, account):
     Check.objects.create(
-        account=Account.objects.get(account_id=request.POST.get("account")),
-        written_date=timezone.make_aware(datetime.strptime(request.POST.get("checkdate"), "%Y-%m-%d")),
-        amount=request.POST.get("dollaramount"),
-        check_no=request.POST.get("checknumber"))
+        written_date=written_date,
+        amount=amt,
+        check_no=check_no,
+        account=account)
 
-def editCheckInDB(request, check):
-    check.written_date = timezone.make_aware(datetime.strptime(request.POST.get("checkdate"), "%Y-%m-%d"))
-    check.amount = request.POST.get("dollaramount")
-    check.check_no = request.POST.get("checknumber")
-    check.account = Account.objects.get(account_id=request.POST.get("account"))
+def editCheckInDB(check, written_date, amt, check_no, account):
+    check.written_date = written_date
+    check.amount = amt
+    check.check_no = check_no
+    check.account = account
 
     check.save()
 
 def handleManageCheckRequest(request):
-    check = getCheckById(request.POST.get("id"))
-    addCheckToDB(request) if check is None else editCheckInDB(request, check)
+    check = Check.objects.get(check_id=int(request.POST.get("id")))
+    written_date = timezone.make_aware(datetime.strptime(request.POST.get("checkdate"), "%Y-%m-%d"))
+    amt = POST.get("dollaramount")
+    check_no = request.POST.get("checknumber")
+    account = Account.objects.get(account_id=request.POST.get("account"))
+
+    addCheckToDB(written_date, amt, check_no, account) if check is None else editCheckInDB(check, written_date, amt, check_no, account)

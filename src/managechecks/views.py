@@ -24,11 +24,13 @@ def editcheck(request):
     return render(request, 'managechecks/editcheck.html',
     {"check": check, "accounts": Account.objects.all(), "datetimestr": check.written_date.strftime('%Y-%m-%d')})
 
+@login_required
 def deletecheck(request):
     id = request.GET.get('id')
     Check.objects.get(check_id=id).delete()
     return HttpResponse()
 
+@login_required
 def submit(request):
     handleManageCheckRequest(request)
     return redirect('../')
