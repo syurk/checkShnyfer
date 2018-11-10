@@ -21,7 +21,9 @@
     $(document).ready(function() {
         $("#id").val("{{account.account_id}}");
         $("#name").val("{{account.name}}");
-        $("#pnum").val("{{account.phone_number}}");
+        var pnum = "{{account.phone_number}}";
+        pnum = pnum.slice(0, 3) + "-" + pnum.slice(3, 6) + "-" + pnum.slice(6);
+        $("#phone").val(pnum);
         $("#rnum").val("{{account.routing_no}}");
         $("#anum").val("{{account.account_no}}");
         $("#strtadd").val("{{account.street_address}}");
