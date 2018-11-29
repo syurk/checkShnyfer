@@ -1,2 +1,2 @@
-*.pdf
-*.zip
+src/db.sqlite3
+__pycache__/*

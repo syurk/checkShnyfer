@@ -1,30 +1,47 @@
-# checkShnyfer
+## Web Info
+The website is hosted at shnyfs.pythonanywhere.com
 
-## Getting Started
-Clone this project into the directory of your choice.
+## Database Info
+The sample database is located in /src/ and is named db.sqlite3.
 
-To run this project, you will need to activate the vitrual environment that goes along with this project. Open a command line in checkShnyfer directory and type ```.\Scripts\activate```. This will activate the virtual environment. 
+## Build Process
+1. Tagging - To view all tags:
+- `git tag`
+- To create a new tag:
+- `git tag -l “<tagname>”`
+2. clone the latest build from the GitHub repository:
+- `git clone https://github.com/syurk738/checkShnyfer.git`
+- To update an existing repository to the GitHub repository:
+- `git commit –m “Pulling from remote.” && git pull`
+3. (optional) To populate the database:
+- Run this command: `python manage.py loaddata initialdata.json`
+4. To run the project locally in debug mode:
+- Navigate to `/src/`
+- Run this command: `python manage.py runserver`
+5.	Unit Testing
 
-**Please install all packages that will be used for this project inside of this environment.**
+To run all tests:
+- Navigate to `/src/`
+- Run this command: `python manage.py test`
 
-## Deploying Development Server
-To run the server, cd into 'src' (There should be a manage.py file) and type ```py manage.py runserver```. This will start a deployment server at http://127.0.0.1:8000/ unless specified otherwise (```py manage.py runserver 8080```). The server automatically reloads code changes. __You do need to manually restart the server when files are added.__
- 
- **You should see a “Congratulations!” page, with a rocket taking off. IF NOT LET ME KNOW!** 
+To run a specific test suite:
+- Navigate to `/src/`
+- Run this command: `python manage.py test <suitename>`
+- Deploy the build to PythonAnywhere.
 
-## Making Changes
-
- ### To the Database
- If changes are made to the database run ```py manage.py migrate``` to make the changes to the database.
-
- ### to the Code
- If you make changes to the code in a python file that already exists and the server is running, you do not need to restart the server.
-
- ## GIT
-**Please do not commit to the master branch.** Instead, follow the instructions [here](https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches) to create branches, commit, and create pull requests. 
-
- ## More Questions
- > Django: Go to [this django project](https://docs.djangoproject.com/en/2.1/intro/tutorial01/) for a full tutorial on how to use Django. 
-
- > Project: Email me at <syurk738@students.bju.edu>
- 
+The website is hosted on PythonAnywhere. To deploy the build:
+1.	Push to GitHub using this command: `git commit –m “pushing to remote” && git push`
+2.	Go to the PythonAnywhere Bash Console at https://www.pythonanywhere.com/user/shnyfs/ and log in using these credentials:
+a.	Username: Stored in DevEnvironment document
+b.	Password: Stored in DevEnvironment document
+c.	Note: the account is registered using my BJU email address – bstee615@students.bju.edu - and you may change it as you like.
+3.	Open a console by clicking Bash Console.
+4.	Run this command to navigate to the Django project: cd src
+5.	Run this command: `git commit`
+6.	When the commit message dialog pops up, enter a message like this: “Pulling from remote.”.
+7.	Press Escape to exit INSERT mode (it’s using Vim) and press :wq to save and quit.
+8.	Run this command: `git pull`
+9.	Navigate to the PythonAnywhere dashboard: https://www.pythonanywhere.com/user/shnyfs/
+10.	Click Open Web Tab and select the shnyfs.pythonanywhere.com app.
+11.	Click Reload shnyfs.pythonanywhere.com.
+12.	Done!
