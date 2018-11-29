@@ -1,0 +1,39 @@
+.letter {
+    font-family: 'Baskerville';
+}
+
+.letter p {
+    font-size: 18px;
+}
+
+@media screen {
+    .letter {
+        border: 1px solid black;
+        padding: 1in;
+        margin: 10px;
+        height: 11in;
+        width: 8.5in;
+        box-shadow: 5px 5px 5px grey;
+    }
+
+    .container {
+        margin: 0;
+    }
+
+    .letter-container {
+        margin: 0;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
+}
+
+@media print {
+    .letter {
+        padding: 0;
+    }
+
+    @page {
+        margin: 1in;
+    }
+}

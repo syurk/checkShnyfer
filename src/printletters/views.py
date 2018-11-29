@@ -4,9 +4,6 @@ from django.utils.encoding import smart_str
 from managechecks.models import Check
 
 from datetime import datetime, timedelta
-from .letters import generateCheck, zipname
-from django.views.static import serve
-import os
 
 def index(request):
     all_ids_string = ''
@@ -28,12 +25,12 @@ def index(request):
     }
     return render(request, 'printletters/index.html', context)
 
-def download(request):
+def viewletter(request):
     checks = request.GET.getlist('id')
     checks_to_print = []
     letters = []
     for id in checks:
         checks_to_print.append(Check.objects.get(check_id=int(id)))
-    generateCheck(checks_to_print)
+    context = { 'checks': checks_to_print }
 
-    return serve(request, os.path.basename(zipname()), os.path.dirname(zipname()))
+    return render(request, 'printletters/letterform.html', context)

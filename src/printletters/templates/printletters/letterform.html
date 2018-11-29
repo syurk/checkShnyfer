@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block script %}
+    {% load static %}
+    <link rel="stylesheet" href="{%  static 'printletters/print.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <div class="letter-container">
+    {% for c in checks %}
+        <div class="letter">
+            <h1>NOTICE OF DISHONORED CHECK</h1>
+            <br>
+            <p>{{c.written_date}}</p>
+            <br>
+            <p>{{c.account.name}}</p>
+            <p>{{c.account.street_address}}</p>
+            <p>{{c.account.city}}, {{c.account.state}} {{c.account.zip}}</p>
+            <p>
+                <p>RE: Notice of Dishonored Check</p>
+                <br>
+                <p>Dear {{c.account.name}}:</p>
+                <p>
+                    I am writing to inform you that check #{{c.check_no}} dated {{c.written_date}}, in the amount of ${{c.amount}} made payable to CheckShnyfers has been returned to me.
+                    I realize that such mishaps can occur and am confident that you will rectify this matter immediately. Accordingly, I ask that you please mail (or deliver in person) a new payment in the original amount plus the bank’s returned-check fee of $10 to the following address:
+                    CheckShnyfer Office.
+                    Please make your payment in cash, certified check, cashier’s check or money order only. It is imperative that you do so without delay. If funds are now available in your account and you would like me to redeposit the check, please let me know as soon as possible. You may contact me at CheckShnyfer Phone. If you have already sent replacement funds, please disregard this letter.
+                    Thank you for your prompt attention to this matter.
+                </p>
+                <p>Sincerely,</p>
+                <br>
+                <p>The CheckShnyfer team</p>
+            </p>
+        </div>
+        <p style="page-break-before: always">
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -6,5 +6,5 @@ app_name = 'printletters_app'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path(r'download/', views.download, name='download')
+    path(r'view/', views.viewletter, name='viewletter')
 ]

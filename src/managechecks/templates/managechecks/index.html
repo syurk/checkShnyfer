@@ -2,11 +2,11 @@
 
 {% block link %}
     {% load static %}
-        
     <link rel="stylesheet" type="text/css" href="{% static 'managechecks/styles.css' %}">
 {% endblock %}
 
-{% block content %}
+
+{% block script %}
     <script>
         function deleteCheck(id) {
             var confirmed = confirm("Are you sure you want to delete a check?");
@@ -23,7 +23,9 @@
             }
         }
     </script>
+{% endblock %}
 
+{% block content %}
     <a class="btn btn-primary" href="/managechecks/addchecks/">Click here to add a check.</a>
 
     <table id="check-table" class="tablesorter">

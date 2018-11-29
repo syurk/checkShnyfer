@@ -27,7 +27,7 @@ SECRET_KEY = 'g$wqy%rg0gr_new4z3qw8akq0@bzko8#zj$q6te-ya&i$(gw#u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['shnyfs.pythonanywhere.com']
+ALLOWED_HOSTS = ['shnyfs.pythonanywhere.com', 'localhost']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'  
 
