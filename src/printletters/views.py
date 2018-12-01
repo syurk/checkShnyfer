@@ -7,11 +7,16 @@ from datetime import datetime, timedelta
 
 def index(request):
     all_ids_string = ''
-    goaldate = timezone.make_aware(datetime.now() - timedelta(days=10)).date()
+    goaldates = [
+        timezone.make_aware(datetime.now() - timedelta(days=10)).date(),
+        timezone.make_aware(datetime.now() - timedelta(days=20)).date(),
+        timezone.make_aware(datetime.now() - timedelta(days=30)).date()
+        ]
+
     checks_to_print = []
     checks_not_to_print = []
     for check in Check.objects.order_by('-written_date'):
-        if check.written_date.date() <= goaldate:
+        if check.written_date.date() in goaldates:
             all_ids_string += 'id=' + str(check.check_id) + '&'
             checks_to_print.append(check)
         else:
@@ -27,7 +32,6 @@ def index(request):
 
 def viewletter(request):
     goaldates = {
-        'initial': timezone.make_aware(datetime.now() - timedelta(days=10)).date(),
         'secondary': timezone.make_aware(datetime.now() - timedelta(days=20)).date(),
         'terminal': timezone.make_aware(datetime.now() - timedelta(days=30)).date()
     }
@@ -44,7 +48,7 @@ def viewletter(request):
             terminalchecks.append(Check.objects.get(check_id=int(id)))
         elif check.written_date.date() <= goaldates['secondary']:
             secondarychecks.append(Check.objects.get(check_id=int(id)))
-        elif check.written_date.date() <= goaldates['initial']:
+        else:
             initialchecks.append(Check.objects.get(check_id=int(id)))
     context = {
         'initialchecks': initialchecks,
