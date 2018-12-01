@@ -54,10 +54,18 @@
 			{% endif %}
                 <td>{{ a.name }}</td>
                 <td>{{ a.phone_number }}</td>
-                <td>{{ a.routing_no }}</td>
-                <td>{{ a.account_no }}</td>
+                <td class="censored">{{ a.routing_no }}</td>
+                <td class="censored">{{ a.account_no }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block script %}
+<script>
+    $('.censored').each(function(idx) {
+        this.innerHTML = '****' + this.textContent.slice(4);
+    });
+</script>
 {% endblock %}
