@@ -23,11 +23,12 @@
       <li class="nav-item">
         <a class="nav-link " href="{% url 'managechecks_app:index' %}">Check List</a>
       </li>
+
       <li {% if request.path == manageaccounts %} class = "nav-item active" {% else %} class = "nav-item"{%endif%}>
         <a class="nav-link " href="{% url 'manageaccounts_app:addaccount' %}">Add Accounts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="{% url 'manageaccounts_app:index' %}">Account List</a>
+        <a class="nav-link " href="{% url 'manageaccounts_app:index' %}">Account List</a> 
       </li>
       <li class="nav-item">
         <a class="nav-link " href="{% url 'printletters_app:index' %}">Print Letters</a>
