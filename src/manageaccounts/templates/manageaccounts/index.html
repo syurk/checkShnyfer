@@ -29,8 +29,14 @@
     <table id="account-table" class="tablesorter">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
+            {% if perms.manageaccounts.can_change_account %}
+                	<th></th>
+            {% endif %}
+            {% if perms.manageaccounts.can_delete_account %}
+                	 <th></th>
+            {% endif %}
+                
+               
                 <th>Name</th>
                 <th>Phone Number</th>
                 <th>Routing #</th>
@@ -40,14 +46,26 @@
         <tbody>
             {% for a in accounts %}
             <tr class="account_id_{{ a.account_id }}">
-                <td><a href="/manageaccounts/editaccount?id={{a.account_id}}">Edit</a></td>
-                <td><button class="deletebutton" onclick="deleteAccount({{ a.account_id }})">Delete</button></td>
+            {% if perms.manageaccounts.can_change_account %}
+                	<td><a href="/manageaccounts/editaccount?id={{a.account_id}}">Edit</a></td>
+            {% endif %}
+            {% if perms.manageaccounts.can_delete_account %}
+                	<td><button class="deletebutton" onclick="deleteAccount({{ a.account_id }})">Delete</button></td>
+			{% endif %}
                 <td>{{ a.name }}</td>
                 <td>{{ a.phone_number }}</td>
-                <td>{{ a.routing_no }}</td>
-                <td>{{ a.account_no }}</td>
+                <td class="censored">{{ a.routing_no }}</td>
+                <td class="censored">{{ a.account_no }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block script %}
+<script>
+    $('.censored').each(function(idx) {
+        this.innerHTML = '****' + this.textContent.slice(4);
+    });
+</script>
 {% endblock %}

@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from .models import Account
 from .accountutils import handleManageAccountRequest
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 app_name = 'manageaccounts_app'
 
@@ -22,6 +22,7 @@ def editaccount(request):
     return render(request, 'manageaccounts/editaccts.html',
     {"account": acct})
 
+@login_required
 def deleteaccount(request):
     id = request.GET.get('id')
     Account.objects.get(account_id=id).delete()
