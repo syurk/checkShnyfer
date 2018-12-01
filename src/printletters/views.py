@@ -7,11 +7,11 @@ from datetime import datetime, timedelta
 
 def index(request):
     all_ids_string = ''
-    goalday = timezone.make_aware(datetime.now() - timedelta(days=10))
+    goaldate = timezone.make_aware(datetime.now() - timedelta(days=10)).date()
     checks_to_print = []
     checks_not_to_print = []
     for check in Check.objects.order_by('-written_date'):
-        if check.written_date.date() == goalday.date():
+        if check.written_date.date() <= goaldate:
             all_ids_string += 'id=' + str(check.check_id) + '&'
             checks_to_print.append(check)
         else:
@@ -26,11 +26,30 @@ def index(request):
     return render(request, 'printletters/index.html', context)
 
 def viewletter(request):
-    checks = request.GET.getlist('id')
-    checks_to_print = []
-    letters = []
-    for id in checks:
-        checks_to_print.append(Check.objects.get(check_id=int(id)))
-    context = { 'checks': checks_to_print }
+    goaldates = {
+        'initial': timezone.make_aware(datetime.now() - timedelta(days=10)).date(),
+        'secondary': timezone.make_aware(datetime.now() - timedelta(days=20)).date(),
+        'terminal': timezone.make_aware(datetime.now() - timedelta(days=30)).date()
+    }
+
+    initialchecks = []
+    secondarychecks = []
+    terminalchecks = []
+
+    for id in request.GET.getlist('id'):
+        check = Check.objects.get(check_id=id)
+        print(check.written_date.date(), goaldates)
+
+        if check.written_date.date() <= goaldates['terminal']:
+            terminalchecks.append(Check.objects.get(check_id=int(id)))
+        elif check.written_date.date() <= goaldates['secondary']:
+            secondarychecks.append(Check.objects.get(check_id=int(id)))
+        elif check.written_date.date() <= goaldates['initial']:
+            initialchecks.append(Check.objects.get(check_id=int(id)))
+    context = {
+        'initialchecks': initialchecks,
+        'secondarychecks': secondarychecks,
+        'terminalchecks': terminalchecks,
+    }
 
     return render(request, 'printletters/letterform.html', context)

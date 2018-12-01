@@ -13,7 +13,7 @@
     <hr>
     <h3>Checks Not To Print</h3>
     {% for check in checks_not_to_print %}
-        <a style="display:block;" class="btn btn-secondary" href="/printletters/view/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}}</a>
+        <a style="display:block;" class="btn btn-secondary" href="#">{{check.account.name}} - {{check.written_date.date}}</a>
     {% endfor %}
 
     <hr>
