@@ -37,8 +37,12 @@
     <table id="check-table" class="tablesorter">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
+                {% if perms.managechecks.can_change_checks %}
+                        <th></th>
+                {% endif %}
+                {% if perms.managechecks.can_delete_checks %}
+                         <th></th>
+                {% endif %}
                 <th>Name</th>
                 <th>Amount</th>
                 <th>Date</th>
@@ -50,8 +54,13 @@
         <tbody>
             {% for c in checks %}
             <tr class="check_id_{{ c.check_id }}">
-                <td><a href="/managechecks/editcheck?id={{c.check_id}}">Edit</a></td>
-                <td><button class="deletebutton" onclick="deleteCheck({{ c.check_id }})">Delete</button></td>
+                {% if perms.managechecks.can_change_checks %}
+                    <td><a href="/managechecks/editcheck?id={{c.check_id}}">Edit</a></td>
+                {% endif %}
+                
+                {% if perms.managechecks.can_delete_checks %}
+                    <td><button class="deletebutton" onclick="deleteCheck({{ c.check_id }})">Delete</button></td>
+                {% endif %}
                 <td>{{ c.account.name }}</td>
                 <td>{{ c.amount }}</td>
                 <td>{{ c.written_date.date }}</td>
