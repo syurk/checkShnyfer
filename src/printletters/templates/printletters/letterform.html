@@ -43,7 +43,7 @@
             </p>
         </div>
 
-        {% if not forloop.last %}
+        {% if secondarychecks or not forloop.last %}
             <p style="page-break-before: always">
         {% endif %}
     {% endfor %}
@@ -84,7 +84,7 @@
             </p>
         </div>
 
-        {% if not forloop.last %}
+        {% if terminalchecks or not forloop.last %}
             <p style="page-break-before: always">
         {% endif %}
     {% endfor %}
