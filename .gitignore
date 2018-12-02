@@ -1,6 +1,5 @@
 src/db.sqlite3
 **/__pycache__/
-**/migrations/
 Include/
 Lib/
 Scripts/
