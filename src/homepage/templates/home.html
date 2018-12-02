@@ -3,14 +3,12 @@
 {% load staticfiles %}
 
 {% block content %}
+	<h1> Welcome to CheckShnyfer{% if user.is_authenticated %}, {{ user.username }}!</h1>
+  {% else %}
+    </h1>
+    <p>You are not logged in. Click 'Sign in' on the navigation bar above.</p>
+  {% endif %}
 
-	<h1>Hello, world!</h1>
-	<h2> Welcome to CheckShnyfer </h2>
-	
-{% if user.is_authenticated %}
-  Hi {{ user.username }}!
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
-{% endif %}
+  CheckShnyfers is a web tool to track bad checks. Click one of the buttons above to get started!
+
 {% endblock %}

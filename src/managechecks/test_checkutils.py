@@ -32,25 +32,29 @@ class AccountTestCase(TestCase):
         check = Check.objects.create(account=self.JimAcc,
                             written_date=self.today,
                             amount=123.45,
-                            check_no=12345)
+                            check_no=12345,
+                            recipient='Walmart')
         edited = {
             "amount": 987.65,
             "check_no": 98765,
             "written_date": timezone.make_aware(datetime.datetime(year=2020, month=1, day=31), timezone.utc),
-            "account": self.AndyAcc
+            "account": self.AndyAcc,
+            "recipient": 'Target'
             }
         
         self.assertNotEqual(check.written_date, edited["written_date"])
         self.assertNotEqual(check.amount, edited["amount"])
         self.assertNotEqual(check.check_no, edited["check_no"])
         self.assertNotEqual(check.account, edited["account"])
+        self.assertNotEqual(check.recipient, edited["recipient"])
 
-        editCheckInDB(check, edited["written_date"], edited["amount"], edited["check_no"], edited["account"])
+        editCheckInDB(check, edited["written_date"], edited["amount"], edited["check_no"], edited["account"], recipient["recipient"])
 
         self.assertEqual(check.written_date, edited["written_date"])
         self.assertEqual(check.amount, edited["amount"])
         self.assertEqual(check.check_no, edited["check_no"])
         self.assertEqual(check.account, edited["account"])
+        self.assertEqual(check.recipient, edited["recipient"])
         
     def test_addCheck(self):
         self.assertEqual(Check.objects.all().count(), 0)

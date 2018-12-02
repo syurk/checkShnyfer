@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.utils import timezone
 from django.utils.encoding import smart_str
 from managechecks.models import Check
+from manageaccounts.models import Account
 
 from datetime import datetime, timedelta
 
@@ -26,7 +27,8 @@ def index(request):
     context = {
         'checks_to_print': checks_to_print,
         'checks_not_to_print': checks_not_to_print,
-        'all_ids_string': all_ids_string
+        'all_ids_string': all_ids_string,
+        'accounts': Account.objects.all()
     }
     return render(request, 'printletters/index.html', context)
 

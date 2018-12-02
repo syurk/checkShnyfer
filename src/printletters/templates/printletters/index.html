@@ -1,20 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h3>Checks To Print</h3>
+    <h3>Checks To Print for Today</h3>
     {% if checks_to_print %}
         {% for check in checks_to_print %}
-            <a style="display:block;" class="btn btn-primary" href="/printletters/view/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}}</a>
+            <a style="display:block;" class="btn btn-primary" href="/printletters/view/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}} - #{{check.check_no}}</a>
         {% endfor %}
     {% else %}
         <p>No checks to print for today.</p>
     {% endif %}
-
-    <hr>
-    <h3>Checks Not To Print</h3>
-    {% for check in checks_not_to_print %}
-        <a style="display:block;" class="btn btn-secondary" href="/printletters/view/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}}</a>
-    {% endfor %}
 
     <hr>
     <h3>Print all Checks</h3>
@@ -25,4 +19,34 @@
     <a style="display:block;" class="btn btn-secondary" href="#">
         No letters for today.</a>
     {% endif %}
+
+    <hr>
+    <h3>All Checks</h3>
+    <p>Filter by name</p>
+    <select id="account" name="account">
+        <option value="-1" selected>All Accounts</option>
+        {% for a in accounts %}
+        <option value="{{ a.account_id }}">{{ a.name }}</option>
+        {% endfor %}
+    </select>
+    {% for check in checks_not_to_print %}
+        <a style="display:block;" class="btn btn-secondary print-check-button" href="/printletters/view/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}} - #{{check.check_no}}</a>
+    {% endfor %}
+{% endblock %}
+
+{% block script %}
+<script>
+    $('#account').change(function() {
+        if ($('#account option:selected').val() == -1) {
+            $('.print-check-button').show();
+        }
+        else {
+            var name = $('#account option:selected').text();
+
+            $('.print-check-button').each(function() {
+                ($(this).text().split(' - ')[0] == name) ? $(this).show() : $(this).hide();
+            });
+        }
+    });
+</script>
 {% endblock %}

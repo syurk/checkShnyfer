@@ -31,19 +31,23 @@ class AccountTestCase(TestCase):
         check = Check.objects.create(account=self.JimAcc,
                                      written_date=self.today,
                                      amount=123.42,
-                                     check_no=23421)
+                                     check_no=23421,
+                                     recipient='BJU')
         self.assertEqual(check.account, self.JimAcc)
         self.assertEqual(check.written_date, self.today)
         self.assertEqual(check.amount, 123.42)
         self.assertEqual(check.check_no, 23421)
+        self.assertEqual(check.recipient, 'BJU')
 #        
     def test_Check_intamount(self):
         check = Check.objects.create(account=self.JimAcc,
                                      written_date=self.today,
                                      amount=123,
-                                     check_no=23421)
+                                     check_no=23421,
+                                     recipient='BJU')
         self.assertEqual(check.account, self.JimAcc)
         self.assertEqual(check.written_date, self.today)
         self.assertEqual(check.amount, 123)
         self.assertEqual(check.check_no, 23421)
+        self.assertEqual(check.recipient, 'BJU')
         

@@ -8,3 +8,4 @@ class Check(models.Model):
     written_date = models.DateTimeField('date written')
     amount = models.FloatField('amount')
     check_no = models.PositiveIntegerField('check number')
+    recipient = models.CharField(max_length=250)

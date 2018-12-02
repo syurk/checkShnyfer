@@ -45,6 +45,7 @@
                 <th>Routing #</th>
                 <th>Account #</th>
                 <th>Check #</th>
+                <th>Recipient</th>
             </tr>
         </thead>
         <tbody>
@@ -58,6 +59,7 @@
                 <td class="censored">{{ c.account.routing_no }}</td>
                 <td class="censored">{{ c.account.account_no }}</td>
                 <td>{{ c.check_no }}</td>
+                <td>{{ c.recipient }}</td>
             </tr>
             {% endfor %}
         </tbody>
