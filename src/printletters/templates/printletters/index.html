@@ -6,17 +6,10 @@
         {% for check in checks_to_print %}
             <a style="display:block;" class="btn btn-primary" href="/printletters/view/?id={{check.check_id}}">{{check.account.name}} - {{check.written_date.date}} - #{{check.check_no}}</a>
         {% endfor %}
+        <a style="display:block;" class="btn btn-primary" href="/printletters/view/?{{all_ids_string}}">
+            Click here to print all letters for today.</a>
     {% else %}
         <p>No letters to print for today.</p>
-    {% endif %}
-
-    <hr>
-    <h3>Print all Checks for Today</h3>
-    {% if checks_to_print %}
-    <a style="display:block;" class="btn btn-primary" href="/printletters/view/?{{all_ids_string}}">
-        Click here to print all letters for today.</a>
-    {% else %}
-    <p>No letters to print for today.</p>
     {% endif %}
 
     <hr>
